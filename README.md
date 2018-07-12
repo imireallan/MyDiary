@@ -17,3 +17,9 @@ cd MyDiary/UI
 ```
 
 Run `index.html` file in your browser
+
+You can also follow this link
+
+```
+https://imireallan.github.io/MyDiary/UI/index.html
+```
