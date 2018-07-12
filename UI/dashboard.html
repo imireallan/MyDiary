@@ -38,6 +38,23 @@
                 <p><b>Diary Entries: </b>(3)</p>
                 <!-- button that triggers the modal -->
                 <p><b><a class="button bg-dark" id="btn" href="#">Reminder Settings</a></b></p>
+
+                <!-- the modal menu -->
+                <div id="myModal" class="modal">
+
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <legend>Notifications</legend>
+                        <form class="myForm">
+                            <div class="form-group">
+                                <label for="date">Set Reminder</label>
+                                <input id="date" type="datetime-local" class="form-control">
+                            </div>
+                            <input class="button bg-dark" type="submit" value="set">                    
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
