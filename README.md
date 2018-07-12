@@ -17,3 +17,9 @@ cd MyDiary/UI
 ```
 
 Run `index.html` file in your browser
+
+UI link for gh-pages
+
+```
+https://imireallan.github.io/MyDiary/UI/index.html
+```
