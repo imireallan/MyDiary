@@ -16,7 +16,6 @@ class Entry(object):
         """Method for creating an entry"""
 
         data["id"] = int(len(self.no_of_entries) + 1)
-        data["date_created"] = datetime.utcnow()
         self.no_of_entries.append(data)
         return data
 
@@ -41,4 +40,3 @@ class Entry(object):
         entry = self.get_one(id)
         entry[0].update(data)
         return entry
-
