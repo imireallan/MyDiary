@@ -6,7 +6,7 @@ class Config(object):
     """Default Settings."""
     DEBUG = False
     TESTING = False
-    SECRET = os.getenv('SECRET')
+    SECRET_KEY = os.getenv('SECRET_KEY')
     RESTPLUS_VALIDATE = True
 
 class DevelopmentConfig(Config):
