@@ -8,7 +8,7 @@ class TestEntry(BaseTestCase):
 
     def create(self):
         return self.client.post(
-            '/api/v1/entries', 
+            '/api/v1/entries',
             data=json.dumps(self.data),
             content_type='application/json'
         )
