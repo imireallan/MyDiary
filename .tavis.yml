@@ -8,7 +8,7 @@ install:
   - "pip install coveralls"
 # command to run tests
 script:
-  - nosetests --with-coverage
+  - pytest --cov
 branches:
   only:
   - ft-api-endpoints-v1-159065510

@@ -1,3 +1,7 @@
+[run]
+branch = True
+source = app
 [report]
-    include=
-            */MyDiary/*
+exclude_lines =
+    pragma: no cover
+ignore_errors = True
