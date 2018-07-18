@@ -45,3 +45,10 @@ class Entry(Resource):
     def get(self, entryId):
         """Displays a single Entry."""
         return entry.get_one(entryId)
+
+    @api.marshal_with(entries)
+    @api.doc('updates an entry')
+    @api.expect(entries)
+    def put(self, entryId):
+        """Updates a single Entry."""
+        return entry.update_entry(entryId, api.payload)
