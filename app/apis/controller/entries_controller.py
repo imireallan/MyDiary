@@ -52,3 +52,11 @@ class Entry(Resource):
     def put(self, entryId):
         """Updates a single Entry."""
         return entry.update_entry(entryId, api.payload)
+
+    @api.marshal_with(entries)
+    @api.doc('deletes an entry')
+    @api.response(204, 'Entry Deleted')
+    def delete(self, entryId):
+        """Deletes a single Entry."""
+        entry.delete_entry(entryId)
+        return '',204
