@@ -1,9 +1,9 @@
+# third-party imports
 from flask_restplus import Resource
 
-
+# local imports
 from ..models.entries import Entry as EntryClass
-from ..utils.dto import EntriesDto 
-
+from ..utils.dto import EntriesDto
 
 
 api = EntriesDto.api

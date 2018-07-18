@@ -1,6 +1,4 @@
-import unittest
 import json
-from app.apis.models.entries import Entry
 from app.tests.base import BaseTestCase
 
 

@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from ..utils.dto import EntriesDto
 
 api = EntriesDto.api
@@ -19,24 +17,23 @@ class Entry(object):
         self.no_of_entries.append(data)
         return data
 
-    def get_one(self, id):
+    def get_one(self, entry_id):
         """Method for fetching one entry by its id"""
-        entry = [entry for entry in self.no_of_entries if entry["id"] == id]
+        entry = [entry for entry in self.no_of_entries if entry["id"] == entry_id]
 
         if not entry:
-            api.abort(404, "Entry {} does not exist".format(id))
-        
+            api.abort(404, "Entry {} does not exist".format(entry_id))
         return entry
 
-    def delete_entry(self, id):
+    def delete_entry(self, entry_id):
         "Method for deleting an entry"
 
-        entry = self.get_one(id)
+        entry = self.get_one(entry_id)
         self.no_of_entries.remove(entry[0])
 
-    def update_entry(self, id, data):
+    def update_entry(self, entry_id, data):
         """Method for updating an entry"""
 
-        entry = self.get_one(id)
+        entry = self.get_one(entry_id)
         entry[0].update(data)
         return entry

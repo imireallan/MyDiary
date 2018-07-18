@@ -1,5 +1,4 @@
 import unittest
-import os
 
 # third-party imports
 from flask_testing import TestCase

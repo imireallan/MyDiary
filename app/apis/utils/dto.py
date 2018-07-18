@@ -1,4 +1,4 @@
-from flask_restplus import Namespace, Resource, fields
+from flask_restplus import Namespace, fields
 
 class EntriesDto(object):
     api = Namespace("entries", description="Entries related operations")
