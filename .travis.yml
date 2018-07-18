@@ -13,5 +13,6 @@ branches:
   only:
   - ft-api-endpoints-v1-159065510
   - develop
+  - master
 after_success:
   - coveralls
