@@ -33,3 +33,15 @@ class EntryList(Resource):
             api.abort(404)
         else:
             return entries
+
+@api.route("/entries/<int:entryId>")
+@api.param("entryId", "entry identifier")
+@api.response(404, 'Entry not found')
+class Entry(Resource):
+    """Displays a single entry item and lets you delete them."""
+
+    @api.marshal_with(entries)
+    @api.doc('get one entry')
+    def get(self, entryId):
+        """Displays a single Entry."""
+        return entry.get_one(entryId)
