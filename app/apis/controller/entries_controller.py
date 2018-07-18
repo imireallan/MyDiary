@@ -22,3 +22,14 @@ class EntryList(Resource):
     def post(self):
         """Creates a new Entry."""
         return entry.create_entry(api.payload),201
+
+    @api.doc("list_entries")
+    @api.response(404, "Entries Not Found")
+    @api.marshal_list_with(entries, envelope="entries")
+    def get(self):
+        """List all Entries"""
+        entries = entry.no_of_entries
+        if not entries:
+            api.abort(404)
+        else:
+            return entries
