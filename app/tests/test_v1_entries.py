@@ -131,3 +131,4 @@ class TestEntry(BaseTestCase):
             self.assertTrue(res.status_code, 400)
             message = res.get_json()['message']
             self.assertIn('Input payload validation failed', message)
+
