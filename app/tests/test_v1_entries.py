@@ -111,7 +111,7 @@ class TestEntry(BaseTestCase):
             self.assertEqual(res.status_code, 400)
             title = res.get_json()['errors']['title']
             message = res.get_json()['message']
-            self.assertIn("'title' is a required property", title)
+            self.assertIn("title should be a string Missing required parameter", title)
             self.assertIn("Input payload validation failed", message)
 
     def test_add_entry_without_contents(self):
@@ -121,7 +121,7 @@ class TestEntry(BaseTestCase):
             self.assertEqual(res.status_code, 400)
             contents = res.get_json()['errors']['contents']
             message = res.get_json()['message']
-            self.assertIn("'contents' is a required property", contents)
+            self.assertIn("contents should be a string Missing required parameter", contents)
             self.assertIn("Input payload validation failed", message)
 
     def test_add_no_json_data(self):
