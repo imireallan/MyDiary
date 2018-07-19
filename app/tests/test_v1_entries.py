@@ -7,11 +7,37 @@ class TestEntry(BaseTestCase):
     """Test Entries Endpoints."""
 
     def create(self):
+        """Create entry with required fields (title, contents)."""
         return self.client.post(
             '/api/v1/entries',
             data=json.dumps(self.data),
             content_type='application/json'
         )
+
+    def create_no_title(self):
+        """Create entry with no title."""
+        return self.client.post(
+            '/api/v1/entries',
+            data=json.dumps(self.no_title),
+            content_type='application/json'
+        )
+
+    def create_no_contents(self):
+        """Create entry with no contents."""
+        return self.client.post(
+            '/api/v1/entries',
+            data=json.dumps(self.no_contents),
+            content_type='application/json'
+        )
+
+    def create_no_json_data(self):
+        """Create no json data"""
+        return self.client.post(
+            '/api/v1/entries',
+            data=json.dumps(self.data)
+        )
+    
+
 
     def test_create_entry(self):
         """Test create entry endpoint
@@ -77,3 +103,31 @@ class TestEntry(BaseTestCase):
             )
             self.assertEqual(result.status_code, 200)
             self.assertIn(b"soccer",result.data )
+
+    def test_add_entry_without_title(self):
+        """Test add entry without title."""
+        with self.client:
+            res = self.create_no_title()
+            self.assertEqual(res.status_code, 400)
+            title = res.get_json()['errors']['title']
+            message = res.get_json()['message']
+            self.assertIn("'title' is a required property", title)
+            self.assertIn("Input payload validation failed", message)
+
+    def test_add_entry_without_contents(self):
+        """Test add entry without contents."""
+        with self.client:
+            res = self.create_no_contents()
+            self.assertEqual(res.status_code, 400)
+            contents = res.get_json()['errors']['contents']
+            message = res.get_json()['message']
+            self.assertIn("'contents' is a required property", contents)
+            self.assertIn("Input payload validation failed", message)
+
+    def test_add_no_json_data(self):
+        "Test cannot add no json data"
+        with self.client:
+            res = self.create_no_json_data()
+            self.assertTrue(res.status_code, 400)
+            message = res.get_json()['message']
+            self.assertIn('Input payload validation failed', message)

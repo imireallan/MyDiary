@@ -14,6 +14,8 @@ class BaseTestCase(TestCase):
     def setUp(self):
         self.entry = Entry()
         self.data = self.entry.create_entry({"title":"test1", "contents":"contents1"})
+        self.no_title = self.entry.create_entry({"contents": "no title"})
+        self.no_contents = self.entry.create_entry({"title": "no contents"})
     
     def tearDown(self):
         self.entry.no_of_entries.clear()
