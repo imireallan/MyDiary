@@ -9,7 +9,8 @@ from manage import app
 class TestDevelopmentConfig(TestCase):
     """TestCase for the development config."""
 
-    def create_app(self):
+    @classmethod
+    def create_app(cls):
         app.config.from_object('app.apis.config.DevelopmentConfig')
         return app
 

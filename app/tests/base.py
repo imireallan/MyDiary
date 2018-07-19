@@ -5,9 +5,9 @@ from manage import app
 
 class BaseTestCase(TestCase):
     """ Base Tests """
-    
+
     @classmethod
-    def create_app(self):
+    def create_app(cls):
         app.config.from_object('app.apis.config.TestingConfig')
         return app
 
