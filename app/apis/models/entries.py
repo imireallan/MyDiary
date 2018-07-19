@@ -37,3 +37,10 @@ class Entry(object):
         entry = self.get_one(entry_id)
         entry[0].update(data)
         return entry
+
+    def get_all(self):
+        """Method for returning all entries."""
+        entries = [entries for entries in self.no_of_entries]
+        if not entries:
+            api.abort(404, "No Entries Found.")
+        return entries

@@ -27,11 +27,7 @@ class EntryList(Resource):
     @api.marshal_list_with(entries, envelope="entries")
     def get(self):
         """List all Entries"""
-        entries = entry.no_of_entries
-        if not entries:
-            api.abort(404)
-        else:
-            return entries
+        return entry.get_all()
 
 @api.route("/entries/<int:entryId>")
 @api.param("entryId", "entry identifier")
