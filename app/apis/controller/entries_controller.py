@@ -3,10 +3,11 @@ from flask_restplus import Resource
 
 # local imports
 from ..models.entries import Entry as EntryClass
-from ..utils.dto import EntriesDto
+from ..utils.dto import EntriesDto, entry_parser, update_entry_parser
 
 api = EntriesDto.api
 entries = EntriesDto.entries
+post_entries = EntriesDto.post_entries
 
 entry = EntryClass()
 
@@ -14,13 +15,13 @@ entry = EntryClass()
 class EntryList(Resource):
     """Displays a list of all entries and lets you POST to add new entries."""
 
-    @api.expect(entries)
+    @api.expect(post_entries)
     @api.doc('creates an entry')
     @api.response(201, "Created")
-    @api.marshal_with(entries)
     def post(self):
         """Creates a new Entry."""
-        return entry.create_entry(api.payload),201
+        args = entry_parser.parse_args()
+        return entry.create_entry(args),201
 
     @api.doc("list_entries")
     @api.response(404, "Entries Not Found")
@@ -43,10 +44,11 @@ class Entry(Resource):
 
     @api.marshal_with(entries)
     @api.doc('updates an entry')
-    @api.expect(entries)
+    @api.expect(post_entries)
     def put(self, entryId):
         """Updates a single Entry."""
-        return entry.update_entry(entryId, api.payload)
+        args = entry_parser.parse_args()
+        return entry.update_entry(entryId, args)
 
     @api.marshal_with(entries)
     @api.doc('deletes an entry')
