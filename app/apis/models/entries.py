@@ -1,3 +1,4 @@
+from datetime import datetime
 from ..utils.dto import EntriesDto
 
 api = EntriesDto.api
@@ -14,6 +15,7 @@ class Entry(object):
         """Method for creating an entry"""
 
         data["id"] = int(len(self.no_of_entries) + 1)
+        data["creation_date"] = str(datetime.now().strftime('%d-%b-%Y : %H:%M:%S'))
         self.no_of_entries.append(data)
         return data
 
@@ -35,6 +37,7 @@ class Entry(object):
         """Method for updating an entry"""
 
         entry = self.get_one(entry_id)
+        data['modified_date'] = str(datetime.now().strftime('%d-%b-%Y : %H:%M:%S'))
         entry[0].update(data)
         return entry
 
