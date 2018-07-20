@@ -8,6 +8,7 @@ class Config(object):
     TESTING = False
     SECRET_KEY = os.getenv('SECRET_KEY')
     RESTPLUS_VALIDATE = True
+    ERROR_404_HELP = False
 
 class DevelopmentConfig(Config):
     """Development Settings."""
