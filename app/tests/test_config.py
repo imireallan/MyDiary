@@ -21,7 +21,8 @@ class TestDevelopmentConfig(TestCase):
 class TestTestingConfig(TestCase):
     """TestCase for the testing config."""
 
-    def create_app(self):
+    @classmethod
+    def create_app(cls):
         app.config.from_object('app.apis.config.TestingConfig')
         return app
 
@@ -32,7 +33,8 @@ class TestTestingConfig(TestCase):
 class TestProductionConfig(TestCase):
     """TestCase for the development config."""
 
-    def create_app(self):
+    @classmethod
+    def create_app(cls):
         app.config.from_object('app.apis.config.ProductionConfig')
         return app
 
