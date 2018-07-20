@@ -36,7 +36,6 @@ class TestEntry(BaseTestCase):
             '/api/v1/entries',
             data=json.dumps(self.data)
         )
-    
 
 
     def test_create_entry(self):

@@ -20,7 +20,7 @@ def create_app(config_name):
         return jsonify(message='please try another page.', error='could not find requested data'), 404
 
     @app.errorhandler(500)
-    def page_not_found(e):
+    def internal_server_error(e):
         return jsonify(message='Sorry!Something went worng. Try another time', error='SERVER DOWN'), 500
 
     return app

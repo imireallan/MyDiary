@@ -47,7 +47,7 @@ class Entry(Resource):
     @api.expect(post_entries)
     def put(self, entryId):
         """Updates a single Entry."""
-        args = entry_parser.parse_args()
+        args = update_entry_parser.parse_args()
         return entry.update_entry(entryId, args)
 
     @api.marshal_with(entries)

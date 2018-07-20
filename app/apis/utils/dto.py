@@ -18,11 +18,11 @@ class EntriesDto(object):
 
 entry_parser = reqparse.RequestParser()
 entry_parser.add_argument('title', required=True, type=str, help='title should be a string')
-entry_parser.add_argument('contents', required=True, type=str, help='contents should be a string') 
-
+entry_parser.add_argument('contents', required=True, type=str, help='contents should be a string')
 update_entry_parser = reqparse.RequestParser()
+
 update_entry_parser.add_argument('title', type=str, help='title should be a string')
-update_entry_parser.add_argument('contents', type=str, help='contents should be a string') 
+update_entry_parser.add_argument('contents', type=str, help='contents should be a string')
 
 
 
