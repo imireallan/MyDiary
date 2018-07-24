@@ -18,13 +18,14 @@ class EntryList(Resource):
     @api.expect(post_entries)
     @api.doc('creates an entry')
     @api.response(201, "Created")
+    @api.response(400, "Bad Request")
     def post(self):
         """Creates a new Entry."""
         args = entry_parser.parse_args()
         if args["title"] == "":
-            return {"message": "'title' is a required field."}
+            return {"message": "'title' is a required field."}, 400
         elif args["contents"] == "":
-            return {"message": "'contents' is a required field."}
+            return {"message": "'contents' is a required field."}, 400
         return entry.create_entry(args),201
 
     @api.doc("list_entries")
