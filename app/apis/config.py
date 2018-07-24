@@ -1,9 +1,8 @@
 # config.py
-
 import os
 
 class Config(object):
-    """Default Settings."""
+    """Parent configuration class."""
     DEBUG = False
     TESTING = False
     SECRET_KEY = os.getenv('SECRET_KEY')
@@ -11,16 +10,16 @@ class Config(object):
     ERROR_404_HELP = False
 
 class DevelopmentConfig(Config):
-    """Development Settings."""
+    """Configurations for Development."""
     DEBUG = True
 
 class TestingConfig(Config):
-    """Testing Settings."""
+    """Configurations for Testing, with a separate test database."""
     TESTING = True
     DEBUG = True
 
 class ProductionConfig(Config):
-    """Production Settings."""
+    """Configurations for Production."""
     DEBUG = False
 
 app_config = {
