@@ -16,6 +16,12 @@ class Entry(object):
 
         data["id"] = int(len(self.no_of_entries) + 1)
         data["creation_date"] = str(datetime.now().strftime('%d-%b-%Y : %H:%M:%S'))
+        data["title"] = data["title"].strip()
+        data["contents"] = data["contents"].strip()
+        if data["title"] == "":
+            api.abort(400, "'title' is a required field.")
+        elif data["contents"] == "":
+            api.abort(400, "'title' is a required field.")
         self.no_of_entries.append(data)
         return data
 
