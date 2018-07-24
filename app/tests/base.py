@@ -19,6 +19,10 @@ class BaseTestCase(TestCase):
             password='password',
             confirm='password'
         )
+        self.entry = {
+            "title": "first title",
+            "contents": "first content"
+        }
 
     def tearDown(self):
         pass

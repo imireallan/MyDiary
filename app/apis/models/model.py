@@ -48,3 +48,22 @@ class User():
         dict_cursor.execute(query_string    )
         user = dict_cursor.fetchone()
         return user
+
+class Entry(object):
+    """Defines the User model"""
+    def __init__(self, id, title, contents):
+        self.id = id
+        self.title = title
+        self.contents = contents
+    
+    @staticmethod
+    def create_entry(cursor, title, contents):
+        query = "INSERT INTO entries (title,contents) VALUES ({},{})".format(title,contents)
+        cursor.execute(query)
+    
+    @staticmethod   
+    def get_entry_by_user_id(dict_cursor, user_id):
+        query_string="SELECT * FROM entries WHERE use_id = {}".format(user_id)
+        dict_cursor.execute(query_string)
+        entry = dict_cursor.fetchone()
+        return entry

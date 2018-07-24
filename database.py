@@ -1,11 +1,13 @@
 import psycopg2
 import psycopg2.extras
 
-class DataBaseConnection:
+class Database(object):
+    """Class for creating the database
+    schema and establishing connection.
+    """
     def __init__(self):
-        connect_db(self)
-
-        
+        self.connect_db()
+    
     def connect_db(self):
         """Method for creating db connection."""
         try:
@@ -44,5 +46,5 @@ class DataBaseConnection:
         
 
 if __name__=="__main__":
-    db_connection = DataBaseConnection()
-    db_connection.create_tables()
+    db = Database()
+    db.create_tables()
