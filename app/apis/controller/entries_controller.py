@@ -21,6 +21,10 @@ class EntryList(Resource):
     def post(self):
         """Creates a new Entry."""
         args = entry_parser.parse_args()
+        if args["title"] == "":
+            return {"message": "'title' is a required field."}
+        elif args["contents"] == "":
+            return {"message": "'contents' is a required field."}
         return entry.create_entry(args),201
 
     @api.doc("list_entries")
@@ -48,6 +52,11 @@ class Entry(Resource):
     def put(self, entryId):
         """Updates a single Entry."""
         args = update_entry_parser.parse_args()
+        entry_one = entry.get_one(entryId)
+        if args["title"] == "":
+            args["title"] = entry_one[0]["title"]
+        elif args["contents"] == "":
+            args["contents"] = entry_one[0]["contents"]
         return entry.update_entry(entryId, args)
 
     @api.marshal_with(entries)
