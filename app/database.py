@@ -21,7 +21,7 @@ class Database(object):
     def create_tables(self):
         tables=(
             """
-            CREATE TABLE users (
+            CREATE TABLE IF NOT EXISTS users (
                 id SERIAL PRIMARY KEY,
                 username VARCHAR(255) NOT NULL,
                 email VARCHAR(255) NOT NULL,
@@ -29,11 +29,11 @@ class Database(object):
             )
             """,
             """
-            CREATE TABLE entries (
+            CREATE TABLE IF NOT EXISTS entries (
                 id SERIAL PRIMARY KEY,
                 user_id INTEGER NOT NULL,
                 title VARCHAR(255) NOT NULL,
-                creation_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+                creation_date TIMESTAMP,
                 contents text,
                 FOREIGN KEY (user_id)
                     REFERENCES users (id)

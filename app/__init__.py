@@ -2,7 +2,7 @@ from flask_restplus import Api
 from flask import Blueprint
 
 blueprint = Blueprint('api', __name__)
-
+from app.apis.controller.user_controller import api as auth_ns
 
 api = Api(
     blueprint,
@@ -11,3 +11,5 @@ api = Api(
     version='1.0',
     description='MyDiary is an online journal where users can pen down their thoughts and feelings.'
 )
+
+api.add_namespace(auth_ns, path="/api/v2/auth")

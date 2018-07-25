@@ -39,13 +39,13 @@ class User():
     
     @staticmethod
     def create_user(cursor, username, email, password):
-        query = "INSERT INTO users (username,email,password) VALUES ({},{},{})".format(username,email,password)
-        cursor.execute(query)
+        query = "INSERT INTO users (username,email,password) VALUES (%s, %s, %s)"
+        cursor.execute(query, (username, email, password))
     
     @staticmethod   
-    def get_user_by_username(dict_cursor,username):
-        query_string="SELECT * FROM users WHERE username = {}".format(username)
-        dict_cursor.execute(query_string    )
+    def get_user_by_username(dict_cursor, username):
+        query_string="SELECT * FROM users WHERE username = %s"
+        dict_cursor.execute(query_string, [username])
         user = dict_cursor.fetchone()
         return user
 
@@ -63,7 +63,7 @@ class Entry(object):
     
     @staticmethod   
     def get_entry_by_user_id(dict_cursor, user_id):
-        query_string="SELECT * FROM entries WHERE use_id = {}".format(user_id)
-        dict_cursor.execute(query_string)
+        query_string="SELECT * FROM entries WHERE use_id = %s"
+        dict_cursor.execute(query_string, ["user_id"])
         entry = dict_cursor.fetchone()
         return entry
