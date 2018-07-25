@@ -43,11 +43,10 @@ class LoginUser(Resource):
         if args["username"] and args["password"]:
             user = User.get_user_by_username(dict_cursor, args["username"])
             if user and Bcrypt().check_password_hash(user["password"], args["password"]):
-                print(user)
                 token = User.generate_token(user["id"])
                 return {"message": "Logged in successfully", "token": token}
-            return {"Warning": "No user found. Please sig up"},404
-        return {"waning": "'username' and 'password' are required fields"}
+            return {"Warning": "No user found. Please sign up"},404
+        return {"waning": "'username' and 'password' are required fields"}, 400
                 
                 
 

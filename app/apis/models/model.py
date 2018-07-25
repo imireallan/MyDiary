@@ -23,20 +23,6 @@ class User():
             return jwt.encode(payload, current_app.config.get("SECRET_KEY")).decode()
         except Exception as e:
             return {"message": str(e)}
-
-    @staticmethod
-    def decode_token(token):
-        """Decodes the access token"""
-
-        try:
-            payload = jwt.decode(token, current_app.config.get("SECRET_KEY"))
-            return payload['sub']
-
-        except jwt.ExpiredSignatureError:
-            return {"message": "Token has expired. Please login"}
-        
-        except jwt.InvalidTokenError:
-            return {"message":"Invalid token."}
     
     @staticmethod
     def create_user(cursor, username, email, password):
@@ -52,19 +38,45 @@ class User():
 
 class Entry(object):
     """Defines the User model"""
-    def __init__(self, id, title, contents):
+    def __init__(self, id, title, contents, user_id):
         self.id = id
         self.title = title
         self.contents = contents
+        self.created_by = user_id
     
     @staticmethod
-    def create_entry(cursor, title, contents):
-        query = "INSERT INTO entries (title,contents) VALUES ({},{})".format(title,contents)
-        cursor.execute(query)
+    def add_entry(cursor, title, contents, user_id):
+        query = "INSERT INTO entries (title, contents, user_id) VALUES (%s, %s, %s)"
+        cursor.execute(query, (title, contents, user_id))
     
     @staticmethod   
     def get_entry_by_user_id(dict_cursor, user_id):
         query_string="SELECT * FROM entries WHERE use_id = %s"
-        dict_cursor.execute(query_string, ["user_id"])
+        dict_cursor.execute(query_string, [user_id])
         entry = dict_cursor.fetchone()
         return entry
+
+    @staticmethod   
+    def get_entry_by_id(dict_cursor, id):
+        query_string="SELECT * FROM entries WHERE id = %s"
+        dict_cursor.execute(query_string, [id])
+        entry = dict_cursor.fetchone()
+        return entry
+
+    @staticmethod   
+    def modify_entry(cursor, title, contents, entryId, user_id):
+        query = "UPDATE entries SET title=%s, contents=%s WHERE (Entryid=%s) AND (user_id=%s)"
+        cursor.execute(query, (title, contents, entryId, user_id))
+
+    @staticmethod   
+    def delete_entry(cursor, entryId, user_id):
+        query = "DELETE FROM entries WHERE (Entryid=%s) AND (user_id=%s)"
+        cursor.execute(query, (entryId, user_id))
+
+    @staticmethod   
+    def get_all(dict_cursor, user_id):
+        query_string="SELECT * FROM entries WHERE user_id = %s"
+        dict_cursor.execute(query_string, [user_id])
+        entry = dict_cursor.fetchall()
+        return entry
+        
