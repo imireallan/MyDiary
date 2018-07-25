@@ -12,8 +12,9 @@ class User():
         self.email = email
         self.password = Bcrypt().generate_password_hash(password)
         self.confirm = confirm
-
-    def generate_token(self, user_id):
+    
+    @staticmethod
+    def generate_token(user_id):
         """token generation for authentication"""
         try:
             payload = {"exp":datetime.utcnow() + timedelta(minutes=30),

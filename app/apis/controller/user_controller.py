@@ -27,7 +27,7 @@ class UserRegister(Resource):
         # check in the db if user exists
         user = User.get_user_by_username(dict_cursor, new_user["username"])
         if not user:
-            hash_password = Bcrypt().generate_password_hash(new_user["password"])
+            hash_password = Bcrypt().generate_password_hash(new_user["password"]).decode()
             User.create_user(cursor, new_user["username"],new_user["email"],hash_password)
             return {"message": "User registered successfully"}
         return {"message": "User already exists. Please login."}, 400
@@ -40,4 +40,14 @@ class LoginUser(Resource):
     def post(self):
         "Handles logging the user."
         args = login_parser.parse_args()
+        if args["username"] and args["password"]:
+            user = User.get_user_by_username(dict_cursor, args["username"])
+            if user and Bcrypt().check_password_hash(user["password"], args["password"]):
+                print(user)
+                token = User.generate_token(user["id"])
+                return {"message": "Logged in successfully", "token": token}
+            return {"Warning": "No user found. Please sig up"},404
+        return {"waning": "'username' and 'password' are required fields"}
+                
+                
 
