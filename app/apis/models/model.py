@@ -77,6 +77,20 @@ class Entry(object):
     def get_all(dict_cursor, user_id):
         query_string="SELECT * FROM entries WHERE user_id = %s"
         dict_cursor.execute(query_string, [user_id])
-        entry = dict_cursor.fetchall()
-        return entry
+        try:
+            entries = dict_cursor.fetchall()
+            results = []
+            for entry in entries:
+                obj = {
+                    "id":entry["id"],
+                    "title":entry["title"],
+                    "contents":entry["contents"],
+                    "user_id":entry["user_id"],
+                    "created_at":entry["created_at"].strftime('%d-%b-%Y : %H:%M:%S'),
+                }
+                results.append(obj)
+            return results
+        except Exception as e:
+            return {"message": str(e)}
+
         

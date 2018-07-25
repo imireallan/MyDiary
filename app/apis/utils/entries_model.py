@@ -6,7 +6,9 @@ entries = api.model(
     "entries", {
     "id": fields.Integer(readonly=True),
     "title":fields.String(required=True, description="The entry title"),
-    "contents":fields.String(required=True, description="The entry contents")
+    "contents":fields.String(required=True, description="The entry contents"),
+    "user_id":fields.String(required=True, description="The entry user_id"),
+    "created_at":fields.String(required=True, description="The entry creation date")
     })
 
 post_entries = api.model(

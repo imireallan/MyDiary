@@ -20,7 +20,7 @@ class EntryList(Resource):
     @api.response(201, "Created")
     @token_required
     @api.doc(security='apikey')
-    @api.header('Authorization', type=str, description='access token')
+    @api.header('x-access-token', type=str, description='access token')
     def post(user_id, self):
         """Creates a new Entry."""
         args = entry_parser.parse_args()
@@ -31,3 +31,17 @@ class EntryList(Resource):
             Entry.add_entry(cursor, title, contents, user_id)
             return {"message": "Entry added successfully"}
         return {"Warning": "'title' and 'contents' are required fields"}, 400
+
+    @api.doc("list_entries")
+    @api.response(404, "Entries Not Found")
+    @api.marshal_list_with(entries, envelope="entries")
+    @token_required
+    @api.doc(security='apikey')
+    @api.header('x-access-token', type=str, description='access token')
+    def get(user_id, self):
+        """List all Entries"""
+        entries = Entry.get_all(dict_cursor, user_id)
+        if not entries:
+            api.abort(404, "No entries for user {}".format(user_id))
+        return entries
+        
