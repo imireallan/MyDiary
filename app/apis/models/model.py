@@ -4,6 +4,8 @@ import jwt
 from flask import current_app
 from flask_bcrypt import Bcrypt
 
+from ..utils.entries_model import api
+
 class User():
     """Defines the User model"""
     def __init__(self, id, username, email, password,confirm):
@@ -48,18 +50,25 @@ class Entry(object):
     def add_entry(cursor, title, contents, user_id):
         query = "INSERT INTO entries (title, contents, user_id) VALUES (%s, %s, %s)"
         cursor.execute(query, (title, contents, user_id))
-    
-    @staticmethod   
-    def get_entry(dict_cursor, user_id, entryId):
-        query_string="SELECT * FROM entries WHERE (id=%s) AND (user_id=%s)"
-        dict_cursor.execute(query_string, (user_id, entryId))
-        data = dict_cursor.fetchone()
-        return data
 
     @staticmethod   
-    def modify_entry(cursor, title, contents, entryId, user_id):
-        query = "UPDATE entries SET title=%s, contents=%s WHERE (Entryid=%s) AND (user_id=%s)"
-        cursor.execute(query, (title, contents, entryId, user_id))
+    def get_entry_by_id(dict_cursor, entryId):
+        query_string="SELECT * FROM entries WHERE id=%s"
+        dict_cursor.execute(query_string, [entryId])
+        data = dict_cursor.fetchone()
+        if not data:
+            api.abort(404, "Entry {} not found".format(entryId))
+        entry = {key:str(value) for key, value in data.items() if value is not str}
+        return entry
+     
+
+    @staticmethod   
+    def modify_entry(dict_cursor, cursor, title, contents, entryId, user_id):
+        data = Entry.get_entry_by_id(dict_cursor, entryId)
+        if data["user_id"] != user_id:
+            api.abort(401, "Unauthorized")
+        query = "UPDATE entries SET title=%s, contents=%s WHERE (id=%s)"
+        cursor.execute(query, (title, contents, entryId))
 
     @staticmethod   
     def delete_entry(cursor, entryId, user_id):

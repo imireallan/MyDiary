@@ -18,7 +18,7 @@ def token_required(f):
             return {"warning": "Token Missing"}
         try:
             payload = jwt.decode(token, current_app.config.get("SECRET_KEY"))
-            user_id = payload['sub']
+            user_id = str(payload['sub'])
             
         except jwt.ExpiredSignatureError:
             return {"message": "Token has expired. Please login"}

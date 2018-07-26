@@ -56,12 +56,19 @@ class EntryClass(Resource):
     @token_required
     @api.doc(security='apikey')
     def get(user_id, self, entryId):
-        # import pdb;pdb.set_trace()
         """Displays a single Entry."""
-        data = Entry.get_entry(dict_cursor, user_id, entryId)
-        entry = {key:value for key, value in data.items()}
-        print(entry)
-        if not entry:
-            api.abort(404, "Entry {} not found".format(entryId))
+        entry = Entry.get_entry_by_id(dict_cursor, entryId)
+        if entry["user_id"] != user_id:
+            api.abort(401, "Unauthorized to view this entry")
         return entry
-        
+
+
+    @api.doc('updates an entry')
+    @api.expect(post_entries)
+    @token_required
+    @api.doc(security='apikey')
+    def put(user_id, self, entryId):
+        """Updates a single Entry."""
+        args = update_entry_parser.parse_args()
+        update_entry = Entry.modify_entry(dict_cursor, cursor, args["title"], args["contents"], entryId, user_id)
+        return {"message": "Updated successfully"}
