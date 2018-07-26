@@ -10,6 +10,7 @@ Have the following set up on your local environment before getting started
 1. [python 3.x](https://www.python.org/downloads/)
 2. [Git](https://git-scm.com)
 3. Working browser or [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?utm_source=chrome-app-launcher-info-dialog)
+4. [Postgres](http://www.postgresql.org)
 
 ## Installation
 For the UI designs to work you need a working browser like google chrome or mozilla firefox
@@ -88,11 +89,14 @@ To test endpoints manually fire up postman and run the following endpoints
 
 **EndPoint** | **Functionality**
 --- | ---
-GET  `/api/v1/entries` | Fetch all entries
-GET  `/api/v1/entries/<entryId>` | Fetch a single entry 
-POST  `/api/v1/entries` | Create an entry
-PUT  `/api/v1/entries/<entryId>` | Modify an entry
-DELETE  `/api/v1/entries/<entryId>` | Delete an entry
+GET  `/api/v2/entries` | Fetch all entries
+GET  `/api/v2/entries/<entryId>` | Fetch a single entry 
+POST  `/api/v2/entries` | Create an entry
+PUT  `/api/v2/entries/<entryId>` | Modify an entry
+DELETE  `/api/v2/entries/<entryId>` | Delete an entry
+POST  `/api/v2/auth/signup` | Register a user
+POST  `/api/v2/auth/login` | Logs in a user
+
 
 
 # API Documentation

@@ -63,6 +63,7 @@ class EntriesTestCase(BaseTestCase):
             register_user(self)
             res = login_user(self)
             access_token = res.get_json()['token']
+            print(access_token)
 
             # create an entry
             res = self.client.post(
