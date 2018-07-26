@@ -10,7 +10,7 @@ class TestUserModel(BaseTestCase):
 
     def test_generate_token(self):
         token = User.generate_token(self.user.id)
-        self.assertTrue(isinstance(token, str))
+        self.assertTrue(isinstance(token, bytes))
 
     def test_get_user_by_username(self):
         data = User.create_user(self.cursor, "imireallan", "imire@gmail.com", "password")

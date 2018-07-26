@@ -22,7 +22,7 @@ class User():
             payload = {"exp":datetime.utcnow() + timedelta(minutes=30),
                        "iat":datetime.utcnow(),
                        "sub":user_id}
-            return jwt.encode(payload, current_app.config.get("SECRET_KEY")).decode()
+            return jwt.encode(payload, current_app.config.get("SECRET_KEY"))
         except Exception as e:
             return {"message": str(e)}
     
