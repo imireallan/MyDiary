@@ -72,3 +72,13 @@ class EntryClass(Resource):
         args = update_entry_parser.parse_args()
         update_entry = Entry.modify_entry(dict_cursor, cursor, args["title"], args["contents"], entryId, user_id)
         return {"message": "Updated successfully"}
+
+    @api.doc('deletes an entry')
+    @api.response(204, 'Entry Deleted')
+    @token_required
+    @api.doc(security='apikey')
+    def delete(user_id, self, entryId):
+        """Deletes a single Entry."""
+
+        Entry.delete_entry(dict_cursor, cursor, entryId, user_id)
+        return {"message": "Entry deleted successully"}, 200

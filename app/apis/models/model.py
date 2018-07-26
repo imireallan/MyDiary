@@ -71,9 +71,12 @@ class Entry(object):
         cursor.execute(query, (title, contents, entryId))
 
     @staticmethod   
-    def delete_entry(cursor, entryId, user_id):
-        query = "DELETE FROM entries WHERE (Entryid=%s) AND (user_id=%s)"
-        cursor.execute(query, (entryId, user_id))
+    def delete_entry(dict_cursor, cursor, entryId, user_id):
+        data = Entry.get_entry_by_id(dict_cursor, entryId)
+        if data["user_id"] != user_id:
+            api.abort(401, "Unauthorized")
+        query = "DELETE FROM entries WHERE id=%s"
+        dict_cursor.execute(query, [entryId])
 
     @staticmethod   
     def get_all(dict_cursor, user_id):
