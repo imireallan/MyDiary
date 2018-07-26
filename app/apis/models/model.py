@@ -50,18 +50,11 @@ class Entry(object):
         cursor.execute(query, (title, contents, user_id))
     
     @staticmethod   
-    def get_entry_by_user_id(dict_cursor, user_id):
-        query_string="SELECT * FROM entries WHERE use_id = %s"
-        dict_cursor.execute(query_string, [user_id])
-        entry = dict_cursor.fetchone()
-        return entry
-
-    @staticmethod   
-    def get_entry_by_id(dict_cursor, id):
-        query_string="SELECT * FROM entries WHERE id = %s"
-        dict_cursor.execute(query_string, [id])
-        entry = dict_cursor.fetchone()
-        return entry
+    def get_entry(dict_cursor, user_id, entryId):
+        query_string="SELECT * FROM entries WHERE (id=%s) AND (user_id=%s)"
+        dict_cursor.execute(query_string, (user_id, entryId))
+        data = dict_cursor.fetchone()
+        return data
 
     @staticmethod   
     def modify_entry(cursor, title, contents, entryId, user_id):
@@ -77,20 +70,17 @@ class Entry(object):
     def get_all(dict_cursor, user_id):
         query_string="SELECT * FROM entries WHERE user_id = %s"
         dict_cursor.execute(query_string, [user_id])
-        try:
-            entries = dict_cursor.fetchall()
-            results = []
-            for entry in entries:
-                obj = {
-                    "id":entry["id"],
-                    "title":entry["title"],
-                    "contents":entry["contents"],
-                    "user_id":entry["user_id"],
-                    "created_at":entry["created_at"].strftime('%d-%b-%Y : %H:%M:%S'),
-                }
-                results.append(obj)
-            return results
-        except Exception as e:
-            return {"message": str(e)}
+        entries = dict_cursor.fetchall()
+        results = []
+        for entry in entries:
+            obj = {
+                "id":entry["id"],
+                "title":entry["title"],
+                "contents":entry["contents"],
+                "user_id":entry["user_id"],
+                "created_at":entry["created_at"].strftime('%d-%b-%Y : %H:%M:%S'),
+            }
+            results.append(obj)
+        return results
 
         

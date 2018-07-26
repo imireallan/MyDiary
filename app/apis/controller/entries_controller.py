@@ -44,4 +44,24 @@ class EntryList(Resource):
         if not entries:
             api.abort(404, "No entries for user {}".format(user_id))
         return entries
+
+@api.route("/entries/<int:entryId>")
+@api.param("entryId", "entry identifier")
+@api.response(404, 'Entry not found')
+class EntryClass(Resource):
+    """Displays a single entry item and lets you delete them."""
+
+    @api.marshal_with(entries)
+    @api.doc('get one entry')
+    @token_required
+    @api.doc(security='apikey')
+    def get(user_id, self, entryId):
+        # import pdb;pdb.set_trace()
+        """Displays a single Entry."""
+        data = Entry.get_entry(dict_cursor, user_id, entryId)
+        entry = {key:value for key, value in data.items()}
+        print(entry)
+        if not entry:
+            api.abort(404, "Entry {} not found".format(entryId))
+        return entry
         

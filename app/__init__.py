@@ -23,4 +23,4 @@ api = Api(
 )
 
 api.add_namespace(auth_ns, path="/api/v2/auth")
-api.add_namespace(entries_ns, path="/api/v2/entries")
+api.add_namespace(entries_ns, path="/api/v2")
