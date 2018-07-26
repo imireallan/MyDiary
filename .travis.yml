@@ -18,7 +18,7 @@ script:
 branches:
   only:
   - ft-api-endpoints-v1-159065510
-  - ch-testing-endpoints-v2-159268546
+  - ch-api-v2-enpoints-159268511
   - develop
   - master
 after_success:
