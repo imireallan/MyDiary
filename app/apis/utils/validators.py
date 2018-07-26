@@ -69,5 +69,5 @@ def validate_entry_data(entry):
         return {"warning": "Enter valid contents"}
 
     # Check for large/long inputs
-    if len(entry['title']) > 20:
+    if len(entry['title']) > 100:
         return {'warning': 'title is too long'}, 400

@@ -35,7 +35,7 @@ class EntryList(Resource):
         title = args["title"]
         contents = args["contents"]
         Entry.add_entry(cursor, title, contents, user_id)
-        return {"message": "Entry added successfully"}
+        return {"message": "Entry added successfully"}, 201
 
     @api.doc("list_entries")
     @api.response(404, "Entries Not Found")
@@ -60,6 +60,7 @@ class EntryClass(Resource):
     @api.doc('get one entry')
     @token_required
     @api.doc(security='apikey')
+    @api.header('x-access-token', type=str, description='access token')
     def get(user_id, self, entryId):
         """Displays a single Entry."""
         entry = Entry.get_entry_by_id(dict_cursor, entryId)
@@ -72,6 +73,7 @@ class EntryClass(Resource):
     @api.expect(post_entries)
     @token_required
     @api.doc(security='apikey')
+    @api.header('x-access-token', type=str, description='access token')
     def put(user_id, self, entryId):
         """Updates a single Entry."""
         args = update_entry_parser.parse_args()
@@ -82,6 +84,7 @@ class EntryClass(Resource):
     @api.response(204, 'Entry Deleted')
     @token_required
     @api.doc(security='apikey')
+    @api.header('x-access-token', type=str, description='access token')
     def delete(user_id, self, entryId):
         """Deletes a single Entry."""
 

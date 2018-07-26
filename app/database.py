@@ -44,6 +44,18 @@ class Database(object):
         )
         for table in tables:
             self.cursor.execute(table)
+            
+    def drop_all(self):
+        tables=(
+            """
+            DROP TABLE IF EXISTS users CASCADE
+            """,
+            """
+            DROP TABLE IF EXISTS entries CASCADE
+            """
+        )
+        for table in tables:
+            self.cursor.execute(table)
         
 
 if __name__=="__main__":

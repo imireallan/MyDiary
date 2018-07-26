@@ -19,6 +19,9 @@ class UserRegister(Resource):
     """Registers a new user."""
 
     @api.expect(register_model)
+    @api.doc("user registration")
+    @api.response(201, "Created")
+    @api.response(400, "Bad Request")
     def post(self):
         """handles registering a user """
         new_user = register_parser.parse_args()
@@ -30,14 +33,17 @@ class UserRegister(Resource):
         if not user:
             hash_password = Bcrypt().generate_password_hash(new_user["password"]).decode()
             User.create_user(cursor, new_user["username"],new_user["email"],hash_password)
-            return {"message": "User registered successfully"}
-        return {"message": "User already exists. Please login."}, 400
+            return {"message": "User registered successfully"}, 201
+        return {"message": "User already exists. Please login."}, 202
 
 @api.route("/login")
 class LoginUser(Resource):
     "Class for logging in a user"
 
     @api.expect(login_model)
+    @api.doc("user login")
+    @api.response(400, "Bad Request")
+    @api.response(401, "Unauthorized")
     def post(self):
         "Handles logging the user."
         args = login_parser.parse_args()
@@ -48,7 +54,7 @@ class LoginUser(Resource):
                     return {"warning": "Invalid password"},400
                 token = User.generate_token(user["id"])
                 return {"message": "Logged in successfully", "token": token}
-            return {"Warning": "No user found. Please sign up"},404
+            return {"Warning": "No user found. Please sign up"},401
         return {"waning": "'username' and 'password' are required fields"}, 400
                 
                 
