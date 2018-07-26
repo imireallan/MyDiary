@@ -6,6 +6,7 @@ from flask_bcrypt import Bcrypt
 from ..models.model import User
 from app.database import Database
 from ..utils.user_model import api, register_parser, login_model, login_parser, register_model
+from ..utils.validators import validate_user_data
 
 # initializing our db connection
 conn = Database()
@@ -21,9 +22,9 @@ class UserRegister(Resource):
     def post(self):
         """handles registering a user """
         new_user = register_parser.parse_args()
-        if new_user["password"] != new_user["confirm"]:
-            return {"Warning": "Passwords do not match!!"}
-
+        invalid_data = validate_user_data(new_user)
+        if invalid_data:
+            return invalid_data
         # check in the db if user exists
         user = User.get_user_by_username(dict_cursor, new_user["username"])
         if not user:
@@ -42,7 +43,9 @@ class LoginUser(Resource):
         args = login_parser.parse_args()
         if args["username"] and args["password"]:
             user = User.get_user_by_username(dict_cursor, args["username"])
-            if user and Bcrypt().check_password_hash(user["password"], args["password"]):
+            if user:
+                if not Bcrypt().check_password_hash(user["password"], args["password"]):
+                    return {"warning": "Invalid password"},400
                 token = User.generate_token(user["id"])
                 return {"message": "Logged in successfully", "token": token}
             return {"Warning": "No user found. Please sign up"},404
