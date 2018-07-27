@@ -22,7 +22,6 @@ class EntryList(Resource):
     def post(self):
         """Creates a new Entry."""
         args = entry_parser.parse_args()
-
         title = args["title"].strip()
         contents = args["contents"].strip()
         obj = {
