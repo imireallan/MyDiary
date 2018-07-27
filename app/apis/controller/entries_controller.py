@@ -18,10 +18,10 @@ class EntryList(Resource):
     @api.expect(post_entries)
     @api.doc('creates an entry')
     @api.response(201, "Created")
+    @api.response(400, "Bad Request")
     def post(self):
         """Creates a new Entry."""
         args = entry_parser.parse_args()
-
         title = args["title"].strip()
         contents = args["contents"].strip()
         obj = {
@@ -59,6 +59,11 @@ class Entry(Resource):
     def put(self, entryId):
         """Updates a single Entry."""
         args = update_entry_parser.parse_args()
+        entry_one = entry.get_one(entryId)
+        if args["title"] == "":
+            args["title"] = entry_one[0]["title"]
+        elif args["contents"] == "":
+            args["contents"] = entry_one[0]["contents"]
         return entry.update_entry(entryId, args)
 
     @api.marshal_with(entries)
