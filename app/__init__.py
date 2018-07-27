@@ -9,7 +9,7 @@ authorizatons = {
     "apikey":{
         "type": "apiKey",
         "in": "header",
-        "name": "x-access-tokens"
+        "name": "x-access-token"
     }
 }
 
