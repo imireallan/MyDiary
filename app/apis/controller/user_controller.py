@@ -52,9 +52,9 @@ class LoginUser(Resource):
             if user:
                 if not Bcrypt().check_password_hash(user["password"], args["password"]):
                     return {"warning": "Invalid password"},400
-                token = User.generate_token(user["id"]).decode("UTF-8")
+                token = User.generate_token(user["id"])
 
-                return {"message": "Logged in successfully", "token": token}
+                return {"message": "Logged in successfully", "token": token.decode("UTF-8")}
             return {"Warning": "No user found. Please sign up"},401
         return {"waning": "'username' and 'password' are required fields"}, 400
                 
