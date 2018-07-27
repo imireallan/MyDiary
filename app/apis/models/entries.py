@@ -13,8 +13,12 @@ class Entry(object):
 
     def create_entry(self, data):
         """Method for creating an entry"""
-
-        data["id"] = int(len(self.no_of_entries) + 1)
+        id = 0
+        if len(self.no_of_entries) == 0:
+            id = 1
+        else:
+            id = self.no_of_entries[-1]["id"] +1
+        data["id"] = id
         data["creation_date"] = str(datetime.now().strftime('%d-%b-%Y : %H:%M:%S'))
         self.no_of_entries.append(data)
         return data
