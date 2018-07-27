@@ -22,8 +22,17 @@ class EntryList(Resource):
     def post(self):
         """Creates a new Entry."""
         args = entry_parser.parse_args()
-        
-        return entry.create_entry(args),201
+        title = args["title"].strip()
+        contents = args["contents"].strip()
+        obj = {
+            "title":title,
+            "contents":contents
+        }
+        if obj["title"] == "":
+            api.abort(400, "'title' is a required field")
+        if obj["contents"] == "":
+            api.abort(400, "'contents' is a required field")
+        return entry.create_entry(obj),201
 
     @api.doc("list_entries")
     @api.response(404, "Entries Not Found")
