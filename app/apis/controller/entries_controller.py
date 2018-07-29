@@ -64,7 +64,7 @@ class EntryClass(Resource):
     def get(user_id, self, entryId):
         """Displays a single Entry."""
         entry = Entry.get_entry_by_id(dict_cursor, entryId)
-        if entry["user_id"] != user_id:
+        if entry["user_id"] != str(user_id):
             api.abort(401, "Unauthorized to view this entry")
         return entry
 

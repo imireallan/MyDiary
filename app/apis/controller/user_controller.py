@@ -47,16 +47,18 @@ class LoginUser(Resource):
     def post(self):
         "Handles logging the user."
         args = login_parser.parse_args()
+        
         if args["username"] and args["password"]:
             user = User.get_user_by_username(dict_cursor, args["username"])
             if user:
                 if not Bcrypt().check_password_hash(user["password"], args["password"]):
                     return {"warning": "Invalid password"},400
+
                 token = User.generate_token(user["id"])
 
                 return {"message": "Logged in successfully", "token": token.decode("UTF-8")}
             return {"Warning": "No user found. Please sign up"},401
-        return {"waning": "'username' and 'password' are required fields"}, 400
+        return {"warning": "'username' and 'password' are required fields"}, 400
                 
                 
 

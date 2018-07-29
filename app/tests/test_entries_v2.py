@@ -63,7 +63,6 @@ class EntriesTestCase(BaseTestCase):
             register_user(self)
             res = login_user(self)
             access_token = res.get_json()['token']
-            print(access_token)
 
             # create an entry
             res = self.client.post(
@@ -162,7 +161,6 @@ class EntriesTestCase(BaseTestCase):
                 }
                 )
             self.assertEqual(res.status_code, 404)
-            print(res.get_json())
             self.assertIn(b"Entry 1 not found", res.data)
 
 if __name__ == "__main__":

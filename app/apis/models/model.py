@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+import uuid
 
 import jwt
 from flask import current_app
@@ -8,7 +9,7 @@ from ..utils.entries_model import api
 
 class User():
     """Defines the User model"""
-    def __init__(self, id, username, email, password,confirm):
+    def __init__(self, id, username, email, password, confirm):
         self.id = id
         self.username = username
         self.email = email
@@ -65,7 +66,7 @@ class Entry(object):
     @staticmethod   
     def modify_entry(dict_cursor, cursor, title, contents, entryId, user_id):
         data = Entry.get_entry_by_id(dict_cursor, entryId)
-        if data["user_id"] != user_id:
+        if data["user_id"] != str(user_id):
             api.abort(401, "Unauthorized")
         query = "UPDATE entries SET title=%s, contents=%s WHERE (id=%s)"
         cursor.execute(query, (title, contents, entryId))
@@ -73,7 +74,7 @@ class Entry(object):
     @staticmethod   
     def delete_entry(dict_cursor, cursor, entryId, user_id):
         data = Entry.get_entry_by_id(dict_cursor, entryId)
-        if data["user_id"] != user_id:
+        if data["user_id"] != str(user_id):
             api.abort(401, "Unauthorized")
         query = "DELETE FROM entries WHERE id=%s"
         dict_cursor.execute(query, [entryId])

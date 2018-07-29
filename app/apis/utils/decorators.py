@@ -2,6 +2,12 @@ from functools import wraps
 
 from flask import request, current_app
 import jwt
+from ..models.model import User
+from ..utils.entries_model import api
+from app.database import Database
+
+conn = Database()
+dict_cursor = conn.dict_cursor
 
 def token_required(f):
     """Ensures user is logged in before action
@@ -12,17 +18,18 @@ def token_required(f):
         user_id = ""
         if 'x-access-token' in request.headers:
             token = request.headers['x-access-token']
+            
         if not token:
-            return {"warning": "Token Missing"}
+            api.abort(400, "Token Missing")
         try:
             payload = jwt.decode(token, current_app.config.get("SECRET_KEY"))
-            user_id = str(payload['sub'])
-            
+            user_id = payload['sub']
+
         except jwt.ExpiredSignatureError:
-            return {"message": "Token has expired. Please login"}
+            api.abort(400, "Token has expired. Please login again")
         
         except jwt.InvalidTokenError:
-            return {"warning":"Invalid token."}
+            api.abort(400, "Invalid token")
 
         return f(user_id, *args, **kwargs)
     return wrap

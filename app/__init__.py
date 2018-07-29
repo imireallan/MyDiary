@@ -21,6 +21,6 @@ api = Api(
     authorizations=authorizatons,
     description='MyDiary is an online journal where users can pen down their thoughts and feelings.'
 )
-
+del api.namespaces[0]
 api.add_namespace(auth_ns, path="/api/v2/auth")
 api.add_namespace(entries_ns, path="/api/v2")

@@ -39,6 +39,18 @@ class BaseTestCase(TestCase):
                 "contents": "tdd is awesome"
             }
         )
+        self.entry_no_title = json.dumps(
+            {
+                "title": "",
+                "contents": "tdd is awesome"
+            }
+        )
+        self.entry_no_contents = json.dumps(
+            {
+                "title": "first test",
+                "contents": ""
+            }
+        )
         self.update_entry = json.dumps(
             {
                 "title": "first edition",

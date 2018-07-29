@@ -31,13 +31,13 @@ def validate_user_data(user):
 
     # check for a valid password
     if not user["password"].strip():
-        return {"warning": "Enter a valid password"}
+        return {"warning": "Enter a valid password"}, 400
 
     # Check for large/long inputs
-    if len(user['username']) > 50:
+    if len(user['username']) > 15:
         return {'warning': 'username is too long'}, 400
 
-    elif len(user['email']) > 120:
+    elif len(user['email']) > 50:
         return {'warning': 'email is too long'}, 400
 
     elif len(user['password']) < 6:
@@ -59,15 +59,15 @@ def validate_entry_data(entry):
         return {'warning': 'Enter a non digit title'}, 400
 
     if not entry["title"].strip():
-        return {"warning": "Enter a valid title"}
+        return {"warning": "Enter a valid title"}, 400
     
-    # check for a valid contents
+    # check for valid contents
     if entry['contents'].strip(' ').isdigit():
-        return {'warning': 'Enter a non digit contents'}, 400
+        return {'warning': 'Enter non digit contents'}, 400
 
     if not entry["contents"].strip():
-        return {"warning": "Enter valid contents"}
+        return {"warning": "Enter valid contents"}, 400
 
     # Check for large/long inputs
-    if len(entry['title']) > 100:
+    if len(entry['title']) > 50:
         return {'warning': 'title is too long'}, 400
