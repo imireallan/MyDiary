@@ -1,4 +1,3 @@
-import unittest
 import json
 from app.tests.base import BaseTestCase
 from app.tests.helpers import register_user, login_user

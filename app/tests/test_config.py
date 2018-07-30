@@ -7,7 +7,10 @@ from manage import app
 
 
 class TestDevelopmentSettings(TestCase):
-    def create_app(self):
+    """class for testing the development configs."""
+
+    @classmethod
+    def create_app(cls):
         app.config.from_object('app.apis.config.DevelopmentConfig')
         return app
 
@@ -18,7 +21,10 @@ class TestDevelopmentSettings(TestCase):
 
 
 class TestTestingSettings(TestCase):
-    def create_app(self):
+    """class for testing the testing configs."""
+
+    @classmethod
+    def create_app(cls):
         app.config.from_object('app.apis.config.TestingConfig')
         return app
 
@@ -28,7 +34,10 @@ class TestTestingSettings(TestCase):
 
 
 class TestProductionSettings(TestCase):
-    def create_app(self):
+    """class for testing the production configs."""
+
+    @classmethod
+    def create_app(cls):
         app.config.from_object('app.apis.config.ProductionConfig')
         return app
 

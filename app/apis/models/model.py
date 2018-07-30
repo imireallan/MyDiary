@@ -1,5 +1,4 @@
 from datetime import datetime, timedelta
-import uuid
 
 import jwt
 from flask import current_app

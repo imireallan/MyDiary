@@ -8,8 +8,9 @@ from app.apis.models.model import User, Entry
 
 class BaseTestCase(TestCase):
     """ Base Tests """
-
-    def create_app(self):
+    
+    @classmethod
+    def create_app(cls):
         app.config.from_object('app.apis.config.TestingConfig')
         return app
 
