@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/imireallan/MyDiary.svg?branch=ft-api-endpoints-v1-159065510)](https://travis-ci.org/imireallan/MyDiary)
-[![Coverage Status](https://coveralls.io/repos/github/imireallan/MyDiary/badge.svg?branch=ft-api-endpoints-v1-159065510)](https://coveralls.io/github/imireallan/MyDiary?branch=ft-api-endpoints-v1-159065510)
+https://travis-ci.org/imireallan/MyDiary.svg?branch=ch-api-v2-enpoints-159268511
+[![Coverage Status](https://coveralls.io/repos/github/imireallan/MyDiary/badge.svg)](https://coveralls.io/github/imireallan/MyDiary)
 
 # MyDiary
 MyDiary is an online journal where users can pen down their thoughts and feelings.
