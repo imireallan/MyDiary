@@ -25,7 +25,7 @@ class User():
             return jwt.encode(payload, current_app.config.get("SECRET_KEY"))
         except Exception as e:
             return {"message": str(e)}
-    
+
     @staticmethod
     def create_user(cursor, username, email, password):
         query = "INSERT INTO users (username,email,password) VALUES (%s, %s, %s)"
@@ -51,7 +51,7 @@ class Entry(object):
         query = "INSERT INTO entries (title, contents, user_id) VALUES (%s, %s, %s)"
         cursor.execute(query, (title, contents, user_id))
 
-    @staticmethod   
+    @staticmethod
     def get_entry_by_id(dict_cursor, entryId):
         query_string="SELECT * FROM entries WHERE id=%s"
         dict_cursor.execute(query_string, [entryId])

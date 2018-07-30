@@ -30,7 +30,7 @@ class AuthTestCase(BaseTestCase):
             # registering a user
             res = register_user(self)
             self.assertEqual(res.status_code, 201)
-            
+
             # logs in a user
             rv = login_user(self)
             self.assertEqual(rv.status_code, 200)

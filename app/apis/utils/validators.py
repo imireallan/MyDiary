@@ -45,7 +45,7 @@ def validate_user_data(user):
 
 def validate_entry_data(entry):
     """ this funtion validates the entry data """
-   
+
     # Check for empty title
     if entry['title'] == '':
         return {'warning': 'title is a required field'}, 400

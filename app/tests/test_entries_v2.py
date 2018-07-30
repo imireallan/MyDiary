@@ -102,7 +102,7 @@ class EntriesTestCase(BaseTestCase):
                 data=self.entry
                 )
             self.assertEqual(res.status_code, 201)
-            
+
             # modify an entry
             rv = self.client.put(
                 '/api/v2/entries/1',

@@ -44,7 +44,7 @@ class Database(object):
         )
         for table in tables:
             self.cursor.execute(table)
-            
+   
     def drop_all(self):
         tables=(
             """

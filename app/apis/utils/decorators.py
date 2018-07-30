@@ -23,7 +23,7 @@ def token_required(f):
 
         except jwt.ExpiredSignatureError:
             api.abort(400, "Token has expired. Please login again")
-        
+
         except jwt.InvalidTokenError:
             api.abort(400, "Invalid token")
 
