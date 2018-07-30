@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/imireallan/MyDiary.svg?branch=ch-api-v2-enpoints-159268511)](https://travis-ci.org/imireallan/MyDiary)
 [![Coverage Status](https://coveralls.io/repos/github/imireallan/MyDiary/badge.svg?branch=ch-api-v2-enpoints-159268511)](https://coveralls.io/github/imireallan/MyDiary?branch=ch-api-v2-enpoints-159268511)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6df7712a031f4a159c35bbbf0afe77e2)](https://www.codacy.com/project/imireallan/MyDiary/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=imireallan/MyDiary&amp;utm_campaign=Badge_Grade_Dashboard)
 
 # MyDiary
 MyDiary is an online journal where users can pen down their thoughts and feelings.
