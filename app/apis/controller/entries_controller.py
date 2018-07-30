@@ -77,7 +77,7 @@ class EntryClass(Resource):
     def put(user_id, self, entryId):
         """Updates a single Entry."""
         args = update_entry_parser.parse_args()
-        update_entry = Entry.modify_entry(dict_cursor, cursor, args["title"], args["contents"], entryId, user_id)
+        Entry.modify_entry(dict_cursor, cursor, args["title"], args["contents"], entryId, user_id)
         return {"message": "Updated successfully"}
 
     @api.doc('deletes an entry')

@@ -1,6 +1,4 @@
 import unittest
-import datetime
-
 
 from app.tests.base import BaseTestCase
 from app.apis.models.model import User

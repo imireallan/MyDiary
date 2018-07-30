@@ -2,12 +2,8 @@ from functools import wraps
 
 from flask import request, current_app
 import jwt
-from ..models.model import User
 from ..utils.entries_model import api
-from app.database import Database
 
-conn = Database()
-dict_cursor = conn.dict_cursor
 
 def token_required(f):
     """Ensures user is logged in before action

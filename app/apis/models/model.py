@@ -39,7 +39,7 @@ class User():
         return user
 
 class Entry(object):
-    """Defines the User model"""
+    """Defines the Entry model"""
     def __init__(self, id, title, contents, user_id):
         self.id = id
         self.title = title
