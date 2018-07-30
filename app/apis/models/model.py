@@ -40,7 +40,7 @@ class User():
 
 class Entry(object):
     """Defines the Entry model"""
-    def __init__(self, user_id, title, contents, user_id):
+    def __init__(self, entry_id, title, contents, user_id):
         self.entry_id = entry_id
         self.title = title
         self.contents = contents
