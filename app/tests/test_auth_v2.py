@@ -18,7 +18,7 @@ class AuthTestCase(BaseTestCase):
             # registering a user
             res = register_user(self)
             self.assertEqual(res.status_code, 201)
-        
+
         # test second registration
         with self.client:
             res = register_user(self)

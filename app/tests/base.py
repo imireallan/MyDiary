@@ -8,7 +8,7 @@ from app.apis.models.model import User, Entry
 
 class BaseTestCase(TestCase):
     """ Base Tests """
-    
+
     @classmethod
     def create_app(cls):
         app.config.from_object('app.apis.config.TestingConfig')
@@ -22,14 +22,14 @@ class BaseTestCase(TestCase):
         self.db.create_tables()
         
         self.user = User(
-            id=1,
+            user_id=1,
             username="imireallan",
             email='imireallan@gmail.com',
             password='password',
             confirm='password'
         )
         self.entry_obj = Entry(
-            id=1,
+            entry_id=1,
             title="first entry model test",
             contents='testing is very essential',
             user_id="1"

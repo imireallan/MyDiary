@@ -47,7 +47,7 @@ class LoginUser(Resource):
     def post(self):
         "Handles logging the user."
         args = login_parser.parse_args()
-        
+
         if args["username"] and args["password"]:
             user = User.get_user_by_username(dict_cursor, args["username"])
             if user:

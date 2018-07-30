@@ -8,7 +8,7 @@ class EntriesTestCase(BaseTestCase):
 
     def test_entry_creation(self):
         """Test API can create a entry."""
-    
+
         with self.client:
             res = register_user(self)
             self.assertTrue(res.status_code, 201)

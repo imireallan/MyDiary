@@ -14,7 +14,7 @@ def token_required(f):
         user_id = ""
         if 'x-access-token' in request.headers:
             token = request.headers['x-access-token']
-            
+
         if not token:
             api.abort(400, "Token Missing")
         try:

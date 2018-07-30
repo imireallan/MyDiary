@@ -8,13 +8,13 @@ from ..utils.entries_model import api
 
 class User():
     """Defines the User model"""
-    def __init__(self, id, username, email, password, confirm):
-        self.id = id
+    def __init__(self, user_id, username, email, password, confirm):
+        self.user_id = user_id
         self.username = username
         self.email = email
         self.password = Bcrypt().generate_password_hash(password)
         self.confirm = confirm
-    
+
     @staticmethod
     def generate_token(user_id):
         """token generation for authentication"""
@@ -31,7 +31,7 @@ class User():
         query = "INSERT INTO users (username,email,password) VALUES (%s, %s, %s)"
         cursor.execute(query, (username, email, password))
     
-    @staticmethod   
+    @staticmethod
     def get_user_by_username(dict_cursor, username):
         query_string="SELECT * FROM users WHERE username = %s"
         dict_cursor.execute(query_string, [username])
@@ -40,8 +40,8 @@ class User():
 
 class Entry(object):
     """Defines the Entry model"""
-    def __init__(self, id, title, contents, user_id):
-        self.id = id
+    def __init__(self, user_id, title, contents, user_id):
+        self.entry_id = entry_id
         self.title = title
         self.contents = contents
         self.created_by = user_id

@@ -7,7 +7,7 @@ class Database(object):
     """
     def __init__(self):
         self.connect_db()
-    
+
     def connect_db(self):
         """Method for creating db connection."""
         try:
