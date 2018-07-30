@@ -82,7 +82,8 @@ You can also use Postman or any other agent to test the endpoints
 To run your tests use
 
 ```bash
-$ python manage.py test
+$ python manage.py test or 
+$ pytest
 ```
 
 To test endpoints manually fire up postman and run the following endpoints
