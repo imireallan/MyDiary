@@ -8,15 +8,23 @@ class Config(object):
     SECRET_KEY = os.getenv('SECRET_KEY')
     RESTPLUS_VALIDATE = True
     ERROR_404_HELP = False
+    db_name = os.getenv("DATABASE")
+    host = os.getenv("HOST")
+    role = os.getenv("ROLE")
+    pwd = os.getenv("PASSWORD")
+    port = os.getenv("PORT")
 
 class DevelopmentConfig(Config):
     """Configurations for Development."""
     DEBUG = True
+    MODE="development"
 
 class TestingConfig(Config):
     """Configurations for Testing, with a separate test database."""
     TESTING = True
     DEBUG = True
+    # db_name = os.getenv("TEST_DB")
+    MODE="testing"
 
 class ProductionConfig(Config):
     """Configurations for Production."""

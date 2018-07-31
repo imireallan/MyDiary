@@ -10,6 +10,7 @@ from ..utils.validators import validate_user_data
 
 # initializing our db connection
 conn = Database()
+conn.create_tables()
 cursor = conn.cursor
 dict_cursor = conn.dict_cursor
 
