@@ -15,10 +15,9 @@ class BaseTestCase(TestCase):
         return app
 
     def setUp(self):
-        self.db = Database()
+        self.db = Database(testing="testing")
         self.cursor = self.db.cursor
         self.dict_cursor = self.db.dict_cursor
-        self.db.drop_all()
         self.db.create_tables()
         
         self.user = User(
