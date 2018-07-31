@@ -21,5 +21,6 @@ branches:
   - ch-api-v2-enpoints-159268511
   - develop
   - master
+  - challenge3
 after_success:
   - coveralls
