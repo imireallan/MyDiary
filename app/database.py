@@ -3,7 +3,7 @@ import os
 
 import psycopg2
 import psycopg2.extras
-from urllib.parse import urlparse
+import urllib.parse as urlparse
 
 
 
@@ -21,7 +21,8 @@ class Database(object):
         self.dict_cursor = self.connection.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
     def connect(self, testing=None):
-        db_uri = os.getenv("TEST_DB_URL") if testing else os.getenv("DATABASE_URL")
+        # db_uri = os.getenv("TEST_DB_URL") if testing else os.getenv("DATABASE_URL")
+        db_uri = os.getenv("DATABASE_URL")
         result = urlparse.urlparse(db_uri)    
         host = result.hostname
         role = result.username
