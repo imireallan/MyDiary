@@ -32,7 +32,7 @@ class Database(object):
         return psycopg2.connect(
             database=database,
             user=role,
-            host=host,
+            host='/tmp/',
             password=pwd,
         )
 
