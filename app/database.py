@@ -27,10 +27,10 @@ class Database(object):
         database = result.path[1:]
 
         return psycopg2.connect(
-            database=database,
-            user=role,
-            host='/tmp/',
-            password='',
+            db_host = "/tmp/.s.PGSQL.5432"
+            db_port = False
+            db_user = openerp
+            db_password = False
         )
 
     # def connect_db(self):
