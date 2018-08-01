@@ -2,6 +2,7 @@
 
 import os
 import unittest
+from flask_cors import CORS
 
 # third-party imports
 from flask_script import Manager # controller class for handling commands
@@ -12,6 +13,7 @@ from app import blueprint
 
 # application development instance
 app = create_app(config_name=os.getenv("FLASK_CONFIG"))
+CORS(app)
 
 # registering the blueprint
 app.register_blueprint(blueprint)
