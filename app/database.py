@@ -28,8 +28,8 @@ class Database(object):
 
         return psycopg2.connect(
             db_host = "/tmp/.s.PGSQL.5432"
-            db_port = False
-            db_user = openerp
+            db_port = '5432'
+            db_user = 'openerp'
             db_password = False
         )
 
