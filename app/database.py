@@ -6,9 +6,6 @@ import psycopg2.extras
 import urllib.parse as urlparse
 
 
-
-# app = create_app(config_name=os.getenv("FLASK_CONFIG"))
-
 class Database(object):
     """Class for creating the database
     schema and establishing connection.
