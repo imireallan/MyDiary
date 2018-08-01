@@ -30,7 +30,7 @@ class Database(object):
             database=database,
             user=role,
             host='/tmp/',
-            password=pwd,
+            password='pwd',
         )
 
     # def connect_db(self):
