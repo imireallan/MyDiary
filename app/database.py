@@ -3,6 +3,9 @@ import os
 
 import psycopg2
 import psycopg2.extras
+from urllib.parse import urlparse
+
+
 
 # app = create_app(config_name=os.getenv("FLASK_CONFIG"))
 
@@ -18,21 +21,18 @@ class Database(object):
         self.dict_cursor = self.connection.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
     def connect(self, testing=None):
-        if testing:
-            db_name = os.getenv("TEST_DB")       
-        else:
-            db_name = os.getenv("DATABASE")
-        host = os.getenv("HOST")
-        role = os.getenv("ROLE")
-        pwd = os.getenv("PASSWORD")
-        port = os.getenv("PORT")
+        db_uri = os.getenv("TEST_DB_URL") if testing else os.getenv("DATABASE_URL")
+        result = urlparse.urlparse(db_uri)    
+        host = result.hostname
+        role = result.username
+        pwd = result.password
+        database = result.path[1:]
 
         return psycopg2.connect(
-            database=db_name,
+            database=database,
             user=role,
             host=host,
             password=pwd,
-            port=port
         )
 
     # def connect_db(self):
