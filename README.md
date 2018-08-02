@@ -30,11 +30,8 @@ cd MyDiary/UI
 
 Run `index.html` file in your browser
 
-UI link for gh-pages
+[UI link for gh-pages](https://imireallan.github.io/MyDiary/UI/index.html)
 
-```
-https://imireallan.github.io/MyDiary/UI/index.html
-```
 
 ## API Installation
 To set up MyDiary API, make sure that you have python3, postman and pip installed.
