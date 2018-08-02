@@ -61,10 +61,21 @@ Install the packages.
 pip3 install -r requirements.txt
 ```
 
-Set environment variables for `SECRET`,`FLASK_CONFIG`
+Set environment variables for `SECRET`,`FLASK_CONFIG`, `ROLE`, `PASSWORD`, `PORT`, `HOST`, `DATABASE`
 > `SECRET` is your secret key
 
-> `FLASK_CONFIG` is the enviroment you are running on. Should be either `Production`, `Development` or `Testing`. NOTE: its case sensitive
+> `FLASK_CONFIG` is the enviroment you are running on. Should be either `production`, `development` or `testing`. NOTE: its case sensitive
+
+> `ROLE` is the postgresql user
+
+> `PASSWORD` is the postgresql password for the user created
+
+> `PORT` the default port for postgresql service which 5432
+
+> `HOST` which is localhost
+
+> `DATABASE` the name of the app database
+
 
 
 ## API Usage
@@ -84,7 +95,7 @@ To run your tests use
 
 ```bash
 $ python manage.py test or 
-$ pytest
+$ pytest --cov
 ```
 
 To test endpoints manually fire up postman and run the following endpoints
