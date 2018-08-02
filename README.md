@@ -19,7 +19,7 @@ For the UI designs to work you need a working browser like google chrome or mozi
 Clone the repository into your local environment
 
 ```
-git clone git@github.com:imireallan/MyDiary.git
+git clone https://github.com/imireallan/MyDiary.git
 ```
 
 Change directory into MyDiary
@@ -83,6 +83,14 @@ Set environment variables for `SECRET`,`FLASK_CONFIG`, `ROLE`, `PASSWORD`, `PORT
 To get the app running...
 
 ```bash
+$ psql -c 'create database <database-name>;' -U postgres
+```
+
+```bash
+$ psql -c "create user <your-user-name> with password <your-password> createdb;" -U postgres
+```
+
+```bash
 $ python manage.py run
 ```
 
@@ -113,7 +121,5 @@ POST  `/api/v2/auth/login` | Logs in a user
 
 
 # API Documentation
-Once app server is running you can view API documentation from
-```
-http://127.0.0.1:5000/api/documentation
-```
+Once app server is running you can view [API documentation here](https://mydiary-v2-dev-allan.herokuapp.com/api/documentation)
+
