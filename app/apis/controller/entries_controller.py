@@ -4,7 +4,7 @@ from flask_restplus import Resource
 # local imports
 from ..utils.entries_model import api, entries, post_entries, entry_parser, update_entry_parser
 from ..utils.decorators import token_required
-from ..utils.validators import validate_entry_data
+from ..utils.validators import validate_entry_data, validate_update_entry
 from ..models.model import Entry
 from app.database import Database
 
@@ -77,6 +77,13 @@ class EntryClass(Resource):
     def put(user_id, self, entryId):
         """Updates a single Entry."""
         args = update_entry_parser.parse_args()
+        entry = Entry.get_entry_by_id(dict_cursor, entryId)
+
+        invalid_data = validate_update_entry(entry, args)
+
+        if invalid_data:
+            return invalid_data
+        
         Entry.modify_entry(dict_cursor, cursor, args["title"], args["contents"], entryId, user_id)
         return {"message": "Updated successfully"}
 

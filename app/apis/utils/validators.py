@@ -72,3 +72,33 @@ def validate_entry_data(entry):
     # Check for large/long inputs
     if len(entry['title']) > 50:
         return {'warning': 'title is too long'}, 400
+
+
+def validate_update_entry(entry, data):
+    """ this funtion validates the updated entry data """
+
+    # Check for empty title
+    if data['title'] == '':
+        data['title'] = entry['title']
+
+    # Check for empty contents
+    elif data['contents'] == '':
+        data['contents'] = entry['contents']
+    
+    # check for a valid title
+    if data['title'].strip(' ').isdigit():
+        return {'warning': 'Enter a non digit title'}, 400
+
+    if not data["title"].strip():
+        return {"warning": "Enter a valid title"}, 400
+    
+    # check for valid contents
+    if data['contents'].strip(' ').isdigit():
+        return {'warning': 'Enter non digit contents'}, 400
+
+    if not data["contents"].strip():
+        return {"warning": "Enter valid contents"}, 400
+
+    # Check for large/long inputs
+    if len(data['title']) > 50:
+        return {'warning': 'title is too long'}, 400
