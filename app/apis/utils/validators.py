@@ -4,6 +4,8 @@ import re
 def validate_user_data(user):
     """ this funtion validates the user data """
 
+    user['username'] = user['username'].lower()
+
     if user['username'] == '':
         return {'warning': 'username is a required field'}, 400
 
