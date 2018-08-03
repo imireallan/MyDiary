@@ -26,6 +26,9 @@ class UserRegister(Resource):
     def post(self):
         """handles registering a user """
         new_user = register_parser.parse_args()
+        user = User.get_user_by_email(dict_cursor, new_user['email'])
+        if user:
+            return {'warning': 'Email exists, please login or register with another email'}, 400
         invalid_data = validate_user_data(new_user)
         if invalid_data:
             return invalid_data

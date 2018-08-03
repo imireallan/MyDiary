@@ -12,8 +12,8 @@ class TestValidatorsCase(BaseTestCase):
         data=json.dumps(dict(
             username='',
             email='imireallan@gmail.com',
-            password='password',
-            confirm='password'
+            password='password123',
+            confirm='password123'
         )),
         content_type='application/json'
         )
@@ -27,8 +27,8 @@ class TestValidatorsCase(BaseTestCase):
         data=json.dumps(dict(
             username='imireallan1imireallan2',
             email='imireallan@gmail.com',
-            password='password',
-            confirm='password'
+            password='password123',
+            confirm='password123'
         )),
         content_type='application/json'
         )
@@ -42,8 +42,8 @@ class TestValidatorsCase(BaseTestCase):
         data=json.dumps(dict(
             username='imire',
             email='imireallanmoffatngiggelucaamugogokinyakinyanjui@gmail.com',
-            password='password',
-            confirm='password'
+            password='password123',
+            confirm='password123'
         )),
         content_type='application/json'
         )
@@ -57,8 +57,8 @@ class TestValidatorsCase(BaseTestCase):
         data=json.dumps(dict(
             username='imire',
             email='',
-            password='password',
-            confirm='password'
+            password='password123',
+            confirm='password123'
         )),
         content_type='application/json'
         )
@@ -73,7 +73,7 @@ class TestValidatorsCase(BaseTestCase):
             email='imireallan@gmail.com',
             username='imire',
             password='',
-            confirm='password'
+            confirm='password123'
         )),
         content_type='application/json'
         )
@@ -116,8 +116,8 @@ class TestValidatorsCase(BaseTestCase):
         data=json.dumps(dict(
             email='imireallangmail.com',
             username='imire',
-            password='password',
-            confirm='password'
+            password='password123',
+            confirm='password123'
         )),
         content_type='application/json'
         )
@@ -131,7 +131,7 @@ class TestValidatorsCase(BaseTestCase):
             email='imireallan@gmail.com',
             username='imire',
             password='passwor',
-            confirm='password'
+            confirm='password123'
         )),
         content_type='application/json'
         )
@@ -145,8 +145,8 @@ class TestValidatorsCase(BaseTestCase):
         data=json.dumps(dict(
             email='imireallan@gmail.com',
             username='12345',
-            password='password',
-            confirm='password'
+            password='password123',
+            confirm='password123'
         )),
         content_type='application/json'
         )
@@ -160,8 +160,8 @@ class TestValidatorsCase(BaseTestCase):
         data=json.dumps(dict(
             email='imireallan@gmail.com',
             username='      ',
-            password='password',
-            confirm='password'
+            password='password123',
+            confirm='password123'
         )),
         content_type='application/json'
         )

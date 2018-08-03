@@ -22,8 +22,8 @@ class AuthTestCase(BaseTestCase):
         # test second registration
         with self.client:
             res = register_user(self)
-            self.assertEqual(res.status_code, 202)
-            self.assertIn(b'User already exists. Please login', res.data)
+            self.assertEqual(res.status_code, 400)
+            self.assertIn(b'Email exists, please login or register with another email', res.data)
 
     def test_user_login(self):
         with self.client:

@@ -7,7 +7,7 @@ class EntriesTestCase(BaseTestCase):
     """Represents the entries test case"""
 
     def test_entry_creation(self):
-        """Test API can create a entry."""
+        """Test API can create a entry.""" 
 
         with self.client:
             res = register_user(self)
@@ -33,7 +33,6 @@ class EntriesTestCase(BaseTestCase):
             register_user(self)
             res = login_user(self)
             access_token = res.get_json()['token']
-            print(res.data)
 
             # create an entry
             res = self.client.post(

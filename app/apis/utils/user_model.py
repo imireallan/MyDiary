@@ -3,10 +3,10 @@ from flask_restplus import Namespace, fields, reqparse
 api = Namespace("auth", description="authentication related operations")
 
 register_model = api.model('register_user', {
-    'email': fields.String(required=True, description='email address'),
-    'username': fields.String(required=True, description='username'),
-    'password': fields.String(required=True, description='password'),
-    'confirm': fields.String(required=True, description='password')
+    'email': fields.String(required=True, description='email address', example='johndoe@gmail.com'),
+    'username': fields.String(required=True, description='username', example='johndoe'),
+    'password': fields.String(required=True, description='password', example='johndoe123'),
+    'confirm': fields.String(required=True, description='password', example='johndoe123')
 })
 
 login_model = api.model('login_user', {

@@ -38,6 +38,13 @@ class User():
         user = dict_cursor.fetchone()
         return user
 
+    @staticmethod
+    def get_user_by_email(dict_cursor, email):
+        query_string="SELECT * FROM users WHERE email = %s"
+        dict_cursor.execute(query_string, [email])
+        user = dict_cursor.fetchone()
+        return user
+
 class Entry(object):
     """Defines the Entry model"""
     def __init__(self, entry_id, title, contents, user_id):

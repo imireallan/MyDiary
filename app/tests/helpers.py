@@ -7,8 +7,8 @@ def register_user(self):
         data=json.dumps(dict(
             email='imireallan@gmail.com',
             username='imire',
-            password='password',
-            confirm='password'
+            password='password123',
+            confirm='password123'
         )),
         content_type='application/json'
         )
@@ -19,7 +19,7 @@ def login_user(self):
         'api/v2/auth/login',
         data=json.dumps(dict(
             username='imire',
-            password='password'
+            password='password123'
         )),
         content_type='application/json'
     )

@@ -15,6 +15,12 @@ def validate_user_data(user):
     elif user['password'] == '':
         return {'warning': 'password is a required field'}, 400
 
+    elif user['password'] == 'password':
+        return {'warning': "password cannot be 'password'"}, 400
+
+    elif user['password'].strip(' ').isdigit():
+        return {'warning': 'password should be alphanumeric'}, 400
+
     elif user['password'] != user['confirm']:
         return {'warning': 'password mismatch!'}, 400
 
