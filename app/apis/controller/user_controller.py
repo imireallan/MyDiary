@@ -28,7 +28,7 @@ class UserRegister(Resource):
         new_user = register_parser.parse_args()
         user = User.get_user_by_email(dict_cursor, new_user['email'])
         if user:
-            return {'warning': 'Email exists, please login or register with another email'}, 400
+            return {'message': 'Email exists, please login or register with another email'}, 400
         invalid_data = validate_user_data(new_user)
         if invalid_data:
             return invalid_data
@@ -61,7 +61,7 @@ class LoginUser(Resource):
                 token = User.generate_token(user["id"])
 
                 return {"message": "Logged in successfully", "token": token.decode("UTF-8")}
-            return {"Warning": "No user found. Please sign up"},401
+            return {"warning": "No user found. Please sign up"},401
         return {"warning": "'username' and 'password' are required fields"}, 400
                 
                 
