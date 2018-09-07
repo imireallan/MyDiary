@@ -19,7 +19,7 @@ class User():
     def generate_token(user_id):
         """token generation for authentication"""
         try:
-            payload = {"exp":datetime.utcnow() + timedelta(minutes=30),
+            payload = {"exp":datetime.utcnow() + timedelta(days=1),
                        "iat":datetime.utcnow(),
                        "sub":user_id}
             return jwt.encode(payload, current_app.config.get("SECRET_KEY"))
