@@ -10,8 +10,8 @@ register_model = api.model('register_user', {
 })
 
 login_model = api.model('login_user', {
-    'username': fields.String(required=True, description='username'),
-    'password': fields.String(required=True, description='password')
+    'username': fields.String(required=True, description='username', example='johndoe'),
+    'password': fields.String(required=True, description='password', example='johndoe123')
 })
 
 register_parser = reqparse.RequestParser()

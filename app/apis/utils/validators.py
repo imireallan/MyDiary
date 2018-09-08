@@ -90,7 +90,7 @@ def validate_update_entry(entry, data):
         data['title'] = entry['title']
 
     # Check for empty contents
-    elif data['contents'] == '':
+    if data['contents'] == '':
         data['contents'] = entry['contents']
     
     # check for a valid title

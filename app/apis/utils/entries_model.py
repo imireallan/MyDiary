@@ -13,8 +13,8 @@ entries = api.model(
 
 post_entries = api.model(
     "post_entries",{
-        "title": fields.String(required=True,description="entries title"),
-        "contents": fields.String(required=True,description="entries contents")
+        "title": fields.String(required=True,description="entries title", example='This is my first entry.'),
+        "contents": fields.String(required=True,description="entries contents", example='This is my first content.')
     }
 )
 
@@ -23,5 +23,5 @@ entry_parser.add_argument('title', required=True, type=str, help='title should b
 entry_parser.add_argument('contents', required=True, type=str, help='contents should be a string')
 
 update_entry_parser = reqparse.RequestParser()
-update_entry_parser.add_argument('title', type=str, help='title should be a string')
-update_entry_parser.add_argument('contents', type=str, help='contents should be a string')
+update_entry_parser.add_argument('title', required=True, type=str, help='title should be a string')
+update_entry_parser.add_argument('contents', required=True, type=str, help='contents should be a string')
